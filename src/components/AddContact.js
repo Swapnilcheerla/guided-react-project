@@ -1,10 +1,14 @@
 import React from 'react';
+import { withRouter } from './withRouter';
 
 class AddContact extends React.Component {
+
     state = {
         name: "",
         email: ""
     }
+
+
     add = (e) => {
         e.preventDefault();
         if (this.state.name === "" || this.state.email === "") {
@@ -14,9 +18,13 @@ class AddContact extends React.Component {
         this.props.addContactHandler(this.state);
         this.setState({ name: "", email: "" });
         console.log(this.state);
+        this.props.navigate("/");
+
+
     };
     render() {
         return (
+
             <div className='ui main'>
                 <h2>Add Contact</h2>
                 <form className='ui form' onSubmit={this.add}>
@@ -47,4 +55,4 @@ class AddContact extends React.Component {
     }
 }
 
-export default AddContact
+export default withRouter(AddContact);
